@@ -150,7 +150,7 @@ int main(int argc, char **argv)
                 p1.SEARCH();
                 std::cout << "ENTER INDEX OF DESIRED CONTACT: " << std::endl;
                 std::cin >> input;
-                p1.get_contact(std::to_int(input));
+                p1.get_contact(input[0] - 48);
             }
         }
         else if (command == "EXIT")
