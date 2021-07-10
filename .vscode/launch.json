@@ -5,12 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "lldb",
+            "name": "(lldb) Launch",
+            "type": "cppdbg",
             "request": "launch",
-            "name": "Debug",
-            "program": "/goinfre/ozakkare/CPP/Module_00/ex00/megaphone",
-            "args": ["abcd", "efgh", "tester"],
-            "cwd": "${workspaceFolder}"
-        }
+            "program": "/goinfre/ozakkare/CPP/Module_00/ex01/a.out",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb"
+        },
     ]
 }
