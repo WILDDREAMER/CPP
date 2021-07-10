@@ -1,4 +1,6 @@
 #include <iostream>
+#include <iomanip>
+#include<string>  
 
 class Contact{
     public:
@@ -23,9 +25,10 @@ class Contact{
             phone = "";
             darkest_secret = "";
         }
-        void display_contact(std::string separator)
+
+        void display_contact()
         {
-            std::cout << separator << "FIRST NAME: " << first_name << separator << "LAST NAME: " << last_name << separator << "NICKNAME: " << nickname << std::endl;
+            std::cout << std::endl << "FIRST NAME: " << first_name << std::endl << "LAST NAME: " << last_name << std::endl << "NICKNAME: " << nickname << std::endl;
         }
 
         bool check_contact(std::string key)
@@ -59,12 +62,21 @@ class phoneBook{
             available++;
             available = available % 8;
         }
-        void SEARCH(std::string key)
+        void SEARCH()
         {
-            for (size_t i = 0; i < available; i++)
+            std::string index;
+            std::cout << std::setw (11) << "INDEX|";
+            std::cout << std::setw (11) << "FIRST NAME|";
+            std::cout << std::setw (11) << "LAST NAME|";
+            std::cout << std::setw (11) << "NICKNAME|" << std::endl;
+            std::cout << std::endl;
+            for (int i = 0; i < available; i++)
             {
-                std::cout << "INDEX: " << i;
-                contacts[i].display_contact(" | ");
+                index = std::to_string(i);
+                std::cout << std::setw (11) << index + "|";
+                std::cout << std::setw (11) << contacts[i].first_name + "|";
+                std::cout << std::setw (11) << contacts[i].last_name + "|";
+                std::cout << std::setw (11) << contacts[i].nickname + "|" << std::endl;
             }
         }
         void get_contact(int index)
@@ -72,16 +84,12 @@ class phoneBook{
             if (index <= available)
             {
                 std::cout << "INDEX: " << index;
-                contacts[index].display_contact("\n");
+                contacts[index].display_contact();
             }
         }
         int get_available()
         {
             return available;
-        }
-        void set_available(int available_)
-        {
-            available = available_;
         }
 };
 
@@ -104,13 +112,13 @@ int main(int argc, char **argv)
 
     while (1)
     {
-        std::cout << "ENTER A COMMAND: (ADD, SEARCH, EXIT)" << std::endl << std::endl;
+        std::cout << std::endl;
+        std::cout << "ENTER A COMMAND: (ADD, SEARCH, EXIT)" << std::endl;
         std::getline(std::cin, command);
         if (command == "ADD")
         {
             std::cout << "FIRST NAME: ";
             std::getline(std::cin,input);
-            std::cout << "oussa";
             input = handle_input(input);
             p1.ADD(input, 0, i);
             std::cout << "LAST NAME: ";
@@ -129,7 +137,8 @@ int main(int argc, char **argv)
             std::getline(std::cin,input);
             input = handle_input(input);
             p1.ADD(input, 4, i);
-            p1.set_available(i + 1);
+            ++i;
+            i = i % 8;
         }
         else if (command == "SEARCH")
         {
@@ -138,10 +147,10 @@ int main(int argc, char **argv)
             else
             {
                 std::cout << "AVAILABLE CONTACTS: " << std::endl;
-                p1.SEARCH(input);
+                p1.SEARCH();
                 std::cout << "ENTER INDEX OF DESIRED CONTACT: " << std::endl;
                 std::cin >> input;
-                p1.get_contact(std::stoi(input));
+                p1.get_contact(std::to_int(input));
             }
         }
         else if (command == "EXIT")
