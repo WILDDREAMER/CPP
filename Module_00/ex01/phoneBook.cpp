@@ -1,6 +1,7 @@
+#include "phoneBook.hpp"
 #include <iostream>
 #include <iomanip>
-#include<string>  
+#include <string>  
 
 class Contact{
     public:
@@ -12,11 +13,11 @@ class Contact{
 
         void init(std::string first_name, std::string last_name, std::string nickname, std::string phone, std::string darkest_secret)
         {
-            first_name = first_name;
-            last_name = last_name;
-            nickname = nickname;
-            phone = phone;
-            darkest_secret = darkest_secret;
+            this->first_name = first_name;
+            this->last_name = last_name;
+            this->nickname = nickname;
+            this->phone = phone;
+            this->darkest_secret = darkest_secret;
         }
         Contact(){
             first_name = "";
@@ -39,6 +40,15 @@ class Contact{
         }
 };
 
+std::string handle_string(std::string input)
+{
+    if (input.length() > 10)
+    {
+        input[9] = '.';
+        input = input.substr(0, 10);
+    }
+    return input;
+}
 class phoneBook{
     public:
         Contact contacts[8];
@@ -59,24 +69,23 @@ class phoneBook{
                 contacts[index].phone = str;
             else if (id == 4)
                 contacts[index].darkest_secret = str;
-            available++;
-            available = available % 8;
         }
         void SEARCH()
         {
             std::string index;
-            std::cout << std::setw (11) << "INDEX|";
+            std::cout << GRN << std::setw (11) << "INDEX|";
             std::cout << std::setw (11) << "FIRST NAME|";
             std::cout << std::setw (11) << "LAST NAME|";
             std::cout << std::setw (11) << "NICKNAME|" << std::endl;
-            std::cout << std::endl;
+            std::cout << "--------------------------------------------\n" << WHT;
             for (int i = 0; i < available; i++)
             {
                 index = std::to_string(i);
-                std::cout << std::setw (11) << index + "|";
-                std::cout << std::setw (11) << contacts[i].first_name + "|";
-                std::cout << std::setw (11) << contacts[i].last_name + "|";
-                std::cout << std::setw (11) << contacts[i].nickname + "|" << std::endl;
+                std::cout << BLU << std::setw (11) << index + "|";
+                std::cout << std::setw (11) << handle_string(contacts[i].first_name) + "|";
+                std::cout << std::setw (11) << handle_string(contacts[i].last_name) + "|";
+                std::cout << std::setw (11) << handle_string(contacts[i].nickname + "|") << std::endl << 
+                WHT;
             }
         }
         void get_contact(int index)
@@ -91,19 +100,24 @@ class phoneBook{
         {
             return available;
         }
+        void set_available()
+        {
+            available = (available >= 8) ? 8 : (available + 1);
+        }
 };
 
-std::string handle_input(std::string input)
+std::string str_toupper(std::string str)
 {
-    if (input.length() > 10)
+    int size = str.length();
+    std::string new_ = "";
+    for(int i = 0; i < size; ++i)
     {
-        input[9] = '.';
-        input = input.substr(0, 10);
+        new_ += (char)toupper(str[i]);
     }
-    return input;
+    return new_;
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
     phoneBook p1;
     std::string command;
@@ -112,51 +126,51 @@ int main(int argc, char **argv)
 
     while (1)
     {
-        std::cout << std::endl;
-        std::cout << "ENTER A COMMAND: (ADD, SEARCH, EXIT)" << std::endl;
-        std::getline(std::cin, command);
-        if (command == "ADD")
+        std::cout << YEL << std::endl << "ENTER A COMMAND: (ADD, SEARCH, EXIT)" << std::endl << WHT;
+        std::cin >> command;
+        if (str_toupper(command) == "ADD")
         {
-            std::cout << "FIRST NAME: ";
-            std::getline(std::cin,input);
-            input = handle_input(input);
+            i = i % 8;
+            std::cout << std::endl << BLK << "******************************************************\n";
+            std::cout << BLU << "FIRST NAME: " << WHT;
+            std::cin >> input;
             p1.ADD(input, 0, i);
-            std::cout << "LAST NAME: ";
-            std::getline(std::cin,input);
-            input = handle_input(input);
+            std::cout << BLU << "LAST NAME: " << WHT;
+            std::cin >> input;
             p1.ADD(input, 1, i);
-            std::cout << "NICKNAME: ";
-            std::getline(std::cin,input);
-            input = handle_input(input);
+            std::cout << BLU << "NICKNAME: " << WHT;
+            std::cin >> input;
             p1.ADD(input, 2, i);
-            std::cout << "PHONE NUMBER: ";
-            std::getline(std::cin,input);
-            input = handle_input(input);
+            std::cout << BLU << "PHONE NUMBER: " << WHT;
+            std::cin >> input;
             p1.ADD(input, 3, i);
-            std::cout << "DARKEST SECRET: ";
-            std::getline(std::cin,input);
-            input = handle_input(input);
+            std::cout << BLU << "DARKEST SECRET: " << WHT;
+            std::cin >> input;
+            std::cout << BLK << "******************************************************\n" << WHT;
             p1.ADD(input, 4, i);
             ++i;
-            i = i % 8;
+            p1.set_available();
         }
-        else if (command == "SEARCH")
+        else if (str_toupper(command) == "SEARCH")
         {
             if (!p1.get_available())
-                std::cout << "NO CONTACTS AVAILABLE, GO ADD SOME." << std::endl;
+                std::cout << "NO CONTACTS AVAILABLE, GO ADD SOME!" << std::endl;
             else
             {
-                std::cout << "AVAILABLE CONTACTS: " << std::endl;
+                std::cout << std::endl << YEL << "AVAILABLE CONTACTS: " << std::endl << std::endl << WHT ;
                 p1.SEARCH();
-                std::cout << "ENTER INDEX OF DESIRED CONTACT: " << std::endl;
+                std::cout << std::endl << YEL << "ENTER INDEX OF DESIRED CONTACT: " << std::endl << WHT;
                 std::cin >> input;
+                std::cout << std::endl;
                 p1.get_contact(input[0] - 48);
             }
         }
-        else if (command == "EXIT")
+        else if (str_toupper(command) == "EXIT")
         {
             exit(EXIT_SUCCESS);
         }
+        else
+            std::cout<< RED << "COMMAND NOT VALID!" << WHT;
     }
     return (0);
 }

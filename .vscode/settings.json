@@ -57,6 +57,9 @@
         "typeinfo": "cpp",
         "unordered_map": "cpp",
         "utility": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "iomanip": "cpp",
+        "complex": "cpp",
+        "sstream": "cpp"
     }
 }
