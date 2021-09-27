@@ -3,45 +3,63 @@
 #include <iomanip>
 #include <string>  
 
-class Contact{
-    public:
-        std::string first_name;
-        std::string last_name;
-        std::string nickname;
-        std::string phone;
-        std::string darkest_secret;
+//contact
+Contact::Contact(){
+    first_name = "";
+    last_name = "";
+    nickname = "";
+    phone = "";
+    darkest_secret = "";
+}
 
-        void init(std::string first_name, std::string last_name, std::string nickname, std::string phone, std::string darkest_secret)
-        {
-            this->first_name = first_name;
-            this->last_name = last_name;
-            this->nickname = nickname;
-            this->phone = phone;
-            this->darkest_secret = darkest_secret;
-        }
-        Contact(){
-            first_name = "";
-            last_name = "";
-            nickname = "";
-            phone = "";
-            darkest_secret = "";
-        }
+void Contact::display_contact()
+{
+    std::cout << std::endl << "FIRST NAME: " << first_name << std::endl << "LAST NAME: " << last_name << std::endl << "NICKNAME: " << nickname << std::endl;
+}
 
-        void display_contact()
-        {
-            std::cout << std::endl << "FIRST NAME: " << first_name << std::endl << "LAST NAME: " << last_name << std::endl << "NICKNAME: " << nickname << std::endl;
-        }
+bool Contact::check_contact(std::string key)
+{
+    if (first_name == key || last_name == key || nickname == key || phone == key)
+        return true;
+    return false;
+}
+//seters
+void Contact::set_first_name(std::string first_name){
+    first_name = first_name;
+}
+void Contact::set_last_name(std::string last_name){
+    last_name = last_name;
+}
+void Contact::set_nickname(std::string nickname){
+    nickname = nickname;
+}
+void Contact::set_phone(std::string phone){
+    phone = phone;
+}
 
-        bool check_contact(std::string key)
-        {
-            if (first_name == key || last_name == key || nickname == key || phone == key)
-                return true;
-            return false;
-        }
-};
+//geters
+std::string Contact::get_first_name(){
+    return first_name;
+}
+std::string Contact::get_last_name(){
+    return last_name;
+}
+std::string Contact::get_nickname(){
+    return nickname;
+}
+void Contact::set_darkest_secret(std::string darkest_secret){
+    darkest_secret = darkest_secret;
+}
+
+//phonebook
+phoneBook::phoneBook()
+{
+    available = 0;
+}
 
 std::string handle_string(std::string input)
 {
+    std::cout<<"input: "<<input<<std::endl;
     if (input.length() > 10)
     {
         input[9] = '.';
@@ -49,62 +67,54 @@ std::string handle_string(std::string input)
     }
     return input;
 }
-class phoneBook{
-    public:
-        Contact contacts[8];
-        int available;
-        phoneBook()
-        {
-            available = 0;
-        }
-        void ADD(std::string str, int id, int index)
-        {
-            if (id == 0)
-                contacts[index].first_name = str;
-            else if (id == 1)
-                contacts[index].last_name = str;
-            else if (id == 2)
-                contacts[index].nickname = str;
-            else if (id == 3)
-                contacts[index].phone = str;
-            else if (id == 4)
-                contacts[index].darkest_secret = str;
-        }
-        void SEARCH()
-        {
-            std::string index;
-            std::cout << GRN << std::setw (11) << "INDEX|";
-            std::cout << std::setw (11) << "FIRST NAME|";
-            std::cout << std::setw (11) << "LAST NAME|";
-            std::cout << std::setw (11) << "NICKNAME|" << std::endl;
-            std::cout << "--------------------------------------------\n" << WHT;
-            for (int i = 0; i < available; i++)
-            {
-                index = std::to_string(i);
-                std::cout << BLU << std::setw (11) << index + "|";
-                std::cout << std::setw (11) << handle_string(contacts[i].first_name) + "|";
-                std::cout << std::setw (11) << handle_string(contacts[i].last_name) + "|";
-                std::cout << std::setw (11) << handle_string(contacts[i].nickname + "|") << std::endl << 
-                WHT;
-            }
-        }
-        void get_contact(int index)
-        {
-            if (index <= available)
-            {
-                std::cout << "INDEX: " << index;
-                contacts[index].display_contact();
-            }
-        }
-        int get_available()
-        {
-            return available;
-        }
-        void set_available()
-        {
-            available = (available >= 8) ? 8 : (available + 1);
-        }
-};
+
+void phoneBook::ADD(std::string str, int id, int index)
+{
+    if (id == 0)
+        contacts[index].set_first_name(str);
+    else if (id == 1)
+        contacts[index].set_last_name(str);
+    else if (id == 2)
+        contacts[index].set_nickname(str);
+    else if (id == 3)
+        contacts[index].set_phone(str);
+    else if (id == 4)
+        contacts[index].set_darkest_secret(str);
+}
+void phoneBook::SEARCH()
+{
+    std::string index;
+    std::cout << GRN << std::setw (11) << "INDEX|";
+    std::cout << std::setw (11) << "FIRST NAME|";
+    std::cout << std::setw (11) << "LAST NAME|";
+    std::cout << std::setw (11) << "NICKNAME|" << std::endl;
+    std::cout << "--------------------------------------------\n" << WHT;
+    for (int i = 0; i < available; i++)
+    {
+        index = std::to_string(i);
+        std::cout << BLU << std::setw (11) << index + "|";
+        std::cout << std::setw (11) << handle_string(contacts[i].get_first_name()) + "|";
+        std::cout << std::setw (11) << handle_string(contacts[i].get_last_name()) + "|";
+        std::cout << std::setw (11) << handle_string(contacts[i].get_nickname() + "|") << std::endl << 
+        WHT;
+    }
+}
+void phoneBook::get_contact(int index)
+{
+    if (index <= available)
+    {
+        std::cout << "INDEX: " << index;
+        contacts[index].display_contact();
+    }
+}
+int phoneBook::get_available()
+{
+    return available;
+}
+void phoneBook::set_available()
+{
+    available = (available >= 8) ? 8 : (available + 1);
+}
 
 std::string str_toupper(std::string str)
 {
