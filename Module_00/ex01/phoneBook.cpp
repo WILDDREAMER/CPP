@@ -17,24 +17,27 @@ void Contact::display_contact()
     std::cout << std::endl << "FIRST NAME: " << first_name << std::endl << "LAST NAME: " << last_name << std::endl << "NICKNAME: " << nickname << std::endl;
 }
 
-bool Contact::check_contact(std::string key)
-{
-    if (first_name == key || last_name == key || nickname == key || phone == key)
-        return true;
-    return false;
-}
+// bool Contact::check_contact(std::string key)
+// {
+//     if (first_name == key || last_name == key || nickname == key || phone == key)
+//         return true;
+//     return false;
+// }
 //seters
 void Contact::set_first_name(std::string first_name){
-    first_name = first_name;
+    this->first_name = first_name;
 }
 void Contact::set_last_name(std::string last_name){
-    last_name = last_name;
+    this->last_name = last_name;
 }
 void Contact::set_nickname(std::string nickname){
-    nickname = nickname;
+    this->nickname = nickname;
 }
 void Contact::set_phone(std::string phone){
-    phone = phone;
+    this->phone = phone;
+}
+void Contact::set_darkest_secret(std::string darkest_secret){
+    this->darkest_secret = darkest_secret;
 }
 
 //geters
@@ -47,9 +50,6 @@ std::string Contact::get_last_name(){
 std::string Contact::get_nickname(){
     return nickname;
 }
-void Contact::set_darkest_secret(std::string darkest_secret){
-    darkest_secret = darkest_secret;
-}
 
 //phonebook
 phoneBook::phoneBook()
@@ -59,7 +59,6 @@ phoneBook::phoneBook()
 
 std::string handle_string(std::string input)
 {
-    std::cout<<"input: "<<input<<std::endl;
     if (input.length() > 10)
     {
         input[9] = '.';
@@ -95,8 +94,7 @@ void phoneBook::SEARCH()
         std::cout << BLU << std::setw (11) << index + "|";
         std::cout << std::setw (11) << handle_string(contacts[i].get_first_name()) + "|";
         std::cout << std::setw (11) << handle_string(contacts[i].get_last_name()) + "|";
-        std::cout << std::setw (11) << handle_string(contacts[i].get_nickname() + "|") << std::endl << 
-        WHT;
+        std::cout << std::setw (11) << handle_string(contacts[i].get_nickname() + "|") << std::endl << WHT;
     }
 }
 void phoneBook::get_contact(int index)
@@ -137,25 +135,25 @@ int main(void)
     while (1)
     {
         std::cout << YEL << std::endl << "ENTER A COMMAND: (ADD, SEARCH, EXIT)" << std::endl << WHT;
-        std::cin >> command;
+        std::getline (std::cin,command);
         if (str_toupper(command) == "ADD")
         {
             i = i % 8;
             std::cout << std::endl << BLK << "******************************************************\n";
             std::cout << BLU << "FIRST NAME: " << WHT;
-            std::cin >> input;
+            std::getline (std::cin,input);
             p1.ADD(input, 0, i);
             std::cout << BLU << "LAST NAME: " << WHT;
-            std::cin >> input;
+            std::getline (std::cin,input);
             p1.ADD(input, 1, i);
             std::cout << BLU << "NICKNAME: " << WHT;
-            std::cin >> input;
+            std::getline (std::cin,input);
             p1.ADD(input, 2, i);
             std::cout << BLU << "PHONE NUMBER: " << WHT;
-            std::cin >> input;
+            std::getline (std::cin,input);
             p1.ADD(input, 3, i);
             std::cout << BLU << "DARKEST SECRET: " << WHT;
-            std::cin >> input;
+            std::getline (std::cin,input);
             std::cout << BLK << "******************************************************\n" << WHT;
             p1.ADD(input, 4, i);
             ++i;
@@ -170,7 +168,7 @@ int main(void)
                 std::cout << std::endl << YEL << "AVAILABLE CONTACTS: " << std::endl << std::endl << WHT ;
                 p1.SEARCH();
                 std::cout << std::endl << YEL << "ENTER INDEX OF DESIRED CONTACT: " << std::endl << WHT;
-                std::cin >> input;
+                std::getline (std::cin,input);
                 std::cout << std::endl;
                 p1.get_contact(input[0] - 48);
             }

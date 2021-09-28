@@ -8,6 +8,7 @@
 # define BLU "\e[1;34m"
 # define MAG "\e[1;35m"
 # define CYN "\e[1;36m"
+
 class Contact{
     private:
         std::string first_name;
