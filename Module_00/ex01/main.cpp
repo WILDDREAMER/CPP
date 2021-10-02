@@ -56,7 +56,12 @@ int main(void)
                 p1.SEARCH();
                 std::cout << std::endl << YEL << "ENTER INDEX OF DESIRED CONTACT: " << std::endl << WHT;
                 std::cin >> input;
-                desiredIndex = std::stoi(input);
+                try{
+                    desiredIndex = std::stoi(input);
+                }catch(const std::exception& e){
+                    std::cout << RED << "INDEX NOT FOUND!!" << std::endl;
+                    continue;
+                }
                 if (desiredIndex >= 0 && desiredIndex < p1.get_available())
                 {
                     std::cout << std::endl;
