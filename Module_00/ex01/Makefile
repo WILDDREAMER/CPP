@@ -1,5 +1,5 @@
 NAME	=	phoneBook
-SRC		=	phoneBook.cpp contact.cpp
+SRC		=	phoneBook.cpp contact.cpp main.cpp
 OBJ		=	phoneBook.o
 
 all		:	$(NAME)
