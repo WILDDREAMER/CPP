@@ -60,6 +60,9 @@
         "vector": "cpp",
         "iomanip": "cpp",
         "complex": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "deque": "cpp",
+        "fstream": "cpp",
+        "stack": "cpp"
     }
 }

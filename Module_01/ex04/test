@@ -1,0 +1,5 @@
+Here str is the object of std::string class 
+which is an instantiation of the basic_string class template that 
+uses char (i.e., bytes) as its character type. The append function 
+appends the add(variable)
+string at the string end string of the init string.

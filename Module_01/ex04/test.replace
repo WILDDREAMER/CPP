@@ -1,0 +1,5 @@
+Here str is the object of std::40 class 
+which is an instantiation of the basic_40 class template that 
+uses char (i.e., bytes) as its character type. The append function 
+appends the add(variable)
+40 at the 40 end 40 of the init 40.
