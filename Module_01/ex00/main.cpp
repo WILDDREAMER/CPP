@@ -2,9 +2,9 @@
 
 int main()
 {
-    randomChump("oussama");
-    Zombie *z = newZombie("oussama");
+    Zombie *z = newZombie("zakkare");
     std::cout << z->getName() << std::endl;
     delete(z);
+    randomChump("oussama");
     return 0;
 }

@@ -3,17 +3,16 @@
 # include <iostream>
 
 # define RED "\e[1;31m"
-
+# define WHT "\e[0;37m"
 class Zombie
 {
     private:
         std::string name;
 
     public:
-        Zombie();
+        Zombie(std::string name);
         ~Zombie();
         void Announce();
-        void setName(std::string name);
         std::string getName();
 };
 
