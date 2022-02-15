@@ -1,6 +1,6 @@
-NAME	=	braiiiiiiinnnzzzz
-SRC		=	main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
-OBJ		=	braiiiiiiinnnzzzz.o
+NAME	=	ClapTrap
+SRC		=	main.cpp ClapTrap.cpp
+OBJ		=	ClapTrap.o
 
 all		:	$(NAME)
 $(NAME) : $(SRC)
