@@ -67,5 +67,8 @@
         "__functional_base_03": "cpp",
         "filesystem": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "cSpell.words": [
+        "Scav"
+    ]
 }

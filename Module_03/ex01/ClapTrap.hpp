@@ -17,6 +17,7 @@
 
 #define RED "\e[1;31m"
 #define WHT "\e[0;37m"
+# define GRN "\e[1;32m"
 
 class ClapTrap
 {
