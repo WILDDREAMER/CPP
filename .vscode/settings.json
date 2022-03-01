@@ -65,7 +65,9 @@
         "fstream": "cpp",
         "stack": "cpp",
         "__functional_base_03": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "__bits": "cpp",
+        "clocale": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "cSpell.words": [
