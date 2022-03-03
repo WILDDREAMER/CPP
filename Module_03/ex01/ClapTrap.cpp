@@ -1,5 +1,10 @@
 #include "./ClapTrap.hpp"
 
+ClapTrap::ClapTrap() : _name("ClapTrap")
+{
+    std::cout << GRN << "ClapTrap " << _name << " is born!" << WHT << std::endl;
+}
+
 ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(100), _energy_points(50), _attack_damage(20)
 {
     std::cout << GRN  << "ClapTrap " << _name << " is born!" << WHT << std::endl;
@@ -8,6 +13,23 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(100), _energy_po
 ClapTrap::~ClapTrap()
 {
     std::cout << RED << "ClapTrap " << _name << " is dead!" << WHT << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap &clapTrap)
+{
+    *this = clapTrap;
+}
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &obj)
+{
+    if (this != &obj)
+    {
+        _name = obj._name;
+        _hit_points = obj._hit_points;
+        _energy_points = obj._energy_points;
+        _attack_damage = obj._attack_damage;
+    }
+    return *this;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)

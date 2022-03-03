@@ -1,5 +1,5 @@
 NAME	=	polymorphism
-SRC		=	main.cpp Polymorphism.cpp WrongAnimal.cpp
+SRC		=	main.cpp Polymorphism.cpp Brain.cpp
 OBJ		=	polymorphism.o
 
 all		:	$(NAME)

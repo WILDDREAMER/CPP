@@ -1,5 +1,24 @@
 #include "./ClapTrap.hpp"
 
+ClapTrap::ClapTrap() : _name("ClapTrap")
+{
+    std::cout << GRN << "ClapTrap " << _name << " is born!" << WHT << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap &clapTrap)
+{
+    *this = clapTrap;
+}
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &obj)
+{
+    if (this != &obj)
+    {
+        _name = obj._name;
+    }
+    return *this;
+}
+
 ClapTrap::ClapTrap(std::string name) : _name(name), _hit_points(100), _energy_points(100), _attack_damage(30)
 {
     std::cout << GRN  << "ClapTrap " << _name << " is born!" << WHT << std::endl;

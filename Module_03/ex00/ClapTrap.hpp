@@ -28,6 +28,8 @@ private:
 
 public:
     ClapTrap(std::string name);
+    ClapTrap(const ClapTrap &clapTrap);
+    ClapTrap &operator=(const ClapTrap &obj);
     ~ClapTrap();
     void attack(const std::string &target);
     void takeDamage(unsigned int amount);
