@@ -36,10 +36,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
 {
     if (this != &obj)
-    {
-        this->_name = obj._name;
         this->_grade = obj._grade;
-    }
     return (*this);
 }
 

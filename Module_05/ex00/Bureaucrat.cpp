@@ -36,10 +36,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name), _grade
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &obj)
 {
     if (this != &obj)
-    {
-        this->_name = obj._name;
         this->_grade = obj._grade;
-    }
     return (*this);
 }
 
@@ -64,7 +61,7 @@ void Bureaucrat::incrementGrade()
     }
     catch (Bureaucrat::GradeTooHighException &e)
     {
-        std::cout << RED << e.what() << WHT << _name << std::endl;
+        std::cout << RED << e.what() << WHT << std::endl;
     }
 }
 
@@ -91,10 +88,10 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &b)
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-    return "Grade is too high for: ";
+    return "Grade is too high";
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-    return "Grade is too low for: ";
+    return "Grade is too low";
 }

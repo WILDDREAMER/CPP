@@ -10,11 +10,10 @@ Form::Form(const std::string &name, int grade_to_sign, int grade_to_execute) : _
     std::cout << "Form created" << std::endl;
 }
 
-// Form::Form(const Form &form)
-// {
-//     *this = form;
-//     std::cout << "Form copied" << std::endl;
-// }
+Form::Form(const Form &form) : _name(form._name), _signed(form._signed), _grade_to_sign(form._grade_to_sign), _grade_to_execute(form._grade_to_execute)
+{
+    std::cout << "Form copied" << std::endl;
+}
 
 Form::~Form()
 {
