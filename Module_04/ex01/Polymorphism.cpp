@@ -46,7 +46,7 @@ Dog::Dog()
     std::cout << "Dog created" << std::endl;
 }
 
-Dog::Dog(const Dog &dog)
+Dog::Dog(const Dog &dog) : Animal(dog), _brain(new Brain(*dog._brain))
 {
     *this = dog;
     std::cout << "Dog copied" << std::endl;
@@ -59,7 +59,7 @@ Dog::~Dog()
 }
 
 Dog &Dog::operator=(const Dog &obj)
-{   
+{
     if (this != &obj)
     {
         _type = obj._type;
@@ -80,7 +80,7 @@ Cat::Cat()
     std::cout << "Cat created" << std::endl;
 }
 
-Cat::Cat(const Cat &cat)
+Cat::Cat(const Cat &cat) : Animal(cat), _brain(new Brain(*cat._brain))
 {
     *this = cat;
     std::cout << "Cat copied" << std::endl;

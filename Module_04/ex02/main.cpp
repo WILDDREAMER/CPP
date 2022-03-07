@@ -2,6 +2,6 @@
 
 int main()
 {
-    AAnimal animal;
+    // AAnimal animal;
     return 0;
 }

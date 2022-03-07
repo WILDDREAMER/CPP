@@ -3,7 +3,9 @@
 
 //Animal
 Animal::Animal() : _type("Animal")
-{}
+{
+    std::cout << "Animal created" << std::endl;
+}
 
 Animal &Animal::operator=(const Animal &obj)
 {
@@ -21,6 +23,7 @@ Animal::Animal(const Animal &animal)
 
 Animal::~Animal()
 {
+    std::cout << "Animal destroyed" << std::endl;
 }
 
 void Animal::makeSound() const
@@ -38,6 +41,7 @@ std::string Animal::getType() const
 Dog::Dog()
 {
     _type = "Dog";
+    std::cout << "Dog created" << std::endl;
 }
 
 Dog &Dog::operator=(const Dog &obj)
@@ -56,6 +60,7 @@ Dog::Dog(const Dog &dog)
 
 Dog::~Dog()
 {
+    std::cout << "Dog destroyed" << std::endl;
 }
 
 void Dog::makeSound() const
@@ -67,6 +72,7 @@ void Dog::makeSound() const
 Cat::Cat()
 {
     _type = "Cat";
+    std::cout << "Cat created" << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &obj)
@@ -85,6 +91,7 @@ Cat::Cat(const Cat &cat)
 
 Cat::~Cat()
 {
+    std::cout << "Cat destroyed" << std::endl;
 }
 
 void Cat::makeSound() const

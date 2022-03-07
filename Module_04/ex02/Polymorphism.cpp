@@ -40,7 +40,7 @@ Dog::Dog()
     std::cout << "Dog created" << std::endl;
 }
 
-Dog::Dog(const Dog &dog)
+Dog::Dog(const Dog &dog) : AAnimal(dog), _brain(new Brain(*dog._brain))
 {
     *this = dog;
 }
@@ -75,7 +75,7 @@ Cat::Cat()
     std::cout << "Cat created" << std::endl;
 }
 
-Cat::Cat(const Cat &cat)
+Cat::Cat(const Cat &cat)  : AAnimal(cat), _brain(new Brain(*cat._brain))
 {
     *this = cat;
 }

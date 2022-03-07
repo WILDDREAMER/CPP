@@ -26,3 +26,13 @@ Brain &Brain::operator=(const Brain &brain)
     }
     return *this;
 }
+
+void Brain::addIdea(const std::string &idea, int index)
+{
+    _ideas[index] = idea;
+}
+
+std::string Brain::getIdea(int index) const
+{
+    return _ideas[index];
+}
