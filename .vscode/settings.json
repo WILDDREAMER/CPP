@@ -67,7 +67,9 @@
         "__functional_base_03": "cpp",
         "filesystem": "cpp",
         "__bits": "cpp",
-        "clocale": "cpp"
+        "clocale": "cpp",
+        "numeric": "cpp",
+        "random": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "cSpell.words": [

@@ -56,6 +56,7 @@ void identify(Base& p)
             }
             catch(const std::exception& e)
             {
+                std::cout << "Unknown" << std::endl;
             }
         }
     }
