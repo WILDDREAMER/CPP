@@ -3,10 +3,11 @@
 
 #include <iostream>
 
-template <typename A, typename S, typename F>
-void func(A a, S s, F f)
+template <typename A, typename S>
+void iter(A *a, S s, void(*f)(const A&))
 {
-    f(a, s);
+    for (S i = 0; i < s; i++)
+        f(a[i]);
 }
 
 #endif
