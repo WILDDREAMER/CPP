@@ -2,7 +2,7 @@
 # define SPAN_HPP
 
 #include <iostream>
-
+#include <vector>
 class Span
 {
     public:
@@ -18,10 +18,7 @@ class Span
 
     private:
         unsigned int _n;
-        int *_arr;
-        int _curr;
-        int _shortest;
-        int _longest;
+        std::vector<int> _vec;
 };
 
 #endif

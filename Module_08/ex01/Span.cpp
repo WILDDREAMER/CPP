@@ -1,13 +1,11 @@
 #include "Span.hpp"
 
-Span::Span(unsigned int n) : _n(n), _arr(NULL), _curr(0), _shortest(0), _longest(0)
+Span::Span(unsigned int n) : _n(n)
 {
     try
     {
         if (n <= 0)
             throw std::exception();
-        else
-            _arr = new int[n];
     }
     catch (std::exception &e)
     {
@@ -16,51 +14,77 @@ Span::Span(unsigned int n) : _n(n), _arr(NULL), _curr(0), _shortest(0), _longest
     }
 }
 
-Span & Span::operator=(Span const & obj)
+Span &Span::operator=(Span const &obj)
 {
     if (this != &obj)
     {
         _n = obj._n;
-        _curr = obj._curr;
-        _shortest = obj._shortest;
-        _longest = obj._longest;
-        if (_arr)
-            delete [] _arr;
-        _arr = new int[_n];
-        for (int i = 0; i < _curr; i++)
-            _arr[i] = obj._arr[i];
+        _vec = obj._vec;
     }
     return *this;
 }
 
-Span::Span(Span const & src)
+Span::Span(Span const &src)
 {
     *this = src;
 }
 
 Span::~Span()
 {
-    if (_arr)
-        delete [] _arr;
 }
 
 void Span::addNumber(int n)
 {
     try
     {
-        if (_curr + 1 == _n)
+        if (_vec.size() == _n)
             throw std::exception();
         else
-        {
-            _shortest = (_curr == 0) ? n : std::min(n, _arr[_curr - 1]);
-            _arr[_curr] = n;
-            _curr++;
-        }
+            _vec.push_back(n);
     }
     catch (std::exception &e)
     {
-        std::cout << e.what() << "array full" << std::endl;
+        std::cout << e.what() << ": array full" << std::endl;
         exit(EXIT_FAILURE);
     }
 }
 
+int Span::longestSpan() const
+{
+    try
+    {
+        if (_vec.size() < 2)
+            throw std::exception();
+        else
+        {
+            int smallest = *std::min_element(_vec.begin(), _vec.end());
+            int biggest = *std::max_element(_vec.begin(), _vec.end());
+            return biggest - smallest;
+        }
+    }
+    catch (std::exception &e)
+    {
+        std::cout << e.what() << ": array too small";
+    }
+    return 0;
+}
+
+int Span::shortestSpan() const
+{
+    try
+    {
+        if (_vec.size() < 2)
+            throw std::exception();
+        else
+        {
+            std::vector <int>tmp = _vec;
+            std::sort(tmp.begin(), tmp.end());
+            return tmp[1] - tmp[0];
+        }
+    }
+    catch (std::exception &e)
+    {
+        std::cout << e.what() << ": array too small";
+    }
+    return 0;
+}

@@ -1,6 +1,6 @@
-NAME	=	Array
+NAME	=	MutantStack
 SRC		=	main.cpp
-OBJ		=	Array.o
+OBJ		=	MutantStack.o
 
 all		:	$(NAME)
 $(NAME) : $(SRC)

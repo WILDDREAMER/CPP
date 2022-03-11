@@ -1,6 +1,6 @@
-NAME	=	iter
-SRC		=	main.cpp
-OBJ		=	iter.o
+NAME	=	span
+SRC		=	Span.cpp main.cpp
+OBJ		=	span.o
 
 all		:	$(NAME)
 $(NAME) : $(SRC)
